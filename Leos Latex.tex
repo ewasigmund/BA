@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+	\usepackage[T1]{fontenc}
+	\usepackage[utf8]{inputenc}
+	\usepackage[british]{babel}
+	\usepackage[a4paper]{geometry}
+	\geometry{verbose,tmargin=3cm,bmargin=3.5cm,lmargin=4cm,rmargin=3cm,marginparwidth=70pt}
+	\setcounter{secnumdepth}{3}
+	\setcounter{tocdepth}{3}
+	\usepackage{prettyref}
+	\usepackage{textcomp}
+	\usepackage{setspace}
+	\usepackage{indentfirst}
+	\usepackage{fancyhdr}
+	\usepackage{url}
+	\usepackage[normalem]{ulem}
+	\usepackage[table, fixpdftex]{xcolor}
+	\usepackage{algpseudocode}
+	\usepackage{bigstrut}
+	\usepackage{enumitem}
+
+	% package hyperref
+	\usepackage{hyperref}
+
+	% biblatex
+	\usepackage[backend=biber,hyperref=true]{biblatex} \usepackage{csquotes}
+	\renewcommand*{\bibsetup}{%
+		\interlinepenalty=10000\relax % default is 5000
+		\widowpenalty=10000\relax
+		\clubpenalty=10000\relax
+		\raggedbottom
+		\frenchspacing
+		\biburlsetup}
+	% fixes the page number of the first page of each chapter
+	\fancypagestyle{plain}{
+			\fancyhead{}
+			\renewcommand{\headrulewidth}{0pt}
+			\renewcommand{\footrulewidth}{0pt}
+			\fancyfoot[OC]{\begin{flushright}\thepage\end{flushright}}
+	}
+	
+	% fancy headers for the thesis
+	\fancyhead{}
+	\fancyhead[RO]{\slshape \nouppercase \rightmark}
+	\fancyfoot[OC]{\begin{flushright}\thepage\end{flushright}}
+	\renewcommand{\headrulewidth}{0.4pt}
+	\setlength{\headheight}{14pt}
+	
+	
+	% add bibliography database
+	\addbibresource{JoSM.bib}
+	
+	% space between biblio items
+	\setlength\bibitemsep{1.7\itemsep} 
+	
+	% title without ""
+	\DeclareFieldFormat[inbook]{title}{#1}
+	% non-italic
+	\DeclareFieldFormat[online]{tlaitle}{#1} 
+	% title unquoted
+	\DeclareFieldFormat[article]{title}{#1} 
+	% no pp. 
+	\DeclareFieldFormat[article]{pages}{#1} 
+	% bold volume
+	\DeclareFieldFormat*{volume}{\mkbibbold{#1}\setpunctfont{\textbf}}
+	
+	% no in:
+	\renewbibmacro{in:}{} 
+	
+	% (volume)
+	\renewbibmacro*{volume+number+eid}{%
+			\printfield{volume}%
+			%\setunit*{\adddot}% DELETED
+			% \setunit*{\addnbspace}% NEW (optional); there's also \addnbthinspace
+			\printfield{number}%
+			% \setunit{\addcomma\space}%
+			\printfield{eid}}
+	\DeclareFieldFormat[article]{number}{\mkbibparens{#1}} 
+	
+	% edition.
+	\DeclareFieldFormat{edition}%
+	{(\ifinteger{#1}%
+			{\mkbibordedition{#1}\addthinspace{}ed.}%
+			{#1\isdot}).}
+	
+	% publisher and location position
+	\renewbibmacro*{publisher+location+date}{%
+			\printlist{publisher}%
+			\setunit*{\addcomma\space}%
+			\printlist{location}%
+			\setunit*{\addcomma\space}%
+			\usebibmacro{date}%
+			\newunit}
+	
+	% shortauthor before author
+	\renewbibmacro*{begentry}{%
+			\ifkeyword{Key}{\sffamily}{}%
+			\iffieldundef{shorthand}
+			{}
+			{\global\undef\bbx@lasthash
+					\printfield{shorthand}%
+					\addcolon\space}%
+			\ifboolexpr{test {\usebibmacro{bbx:dashcheck}} or test {\ifnameundef{shortauthor}}}%
+			{}%
+			{\printnames{shortauthor}%
+					\addspace\textendash\space}}
+
+\title{Proposal Bachelor Thesis}
+\author{Leopold Ingenohl}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
